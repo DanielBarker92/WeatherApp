@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherApp.Adapters.Interfaces\WeatherApp.Adapters.Interfaces.csproj" />
+    <ProjectReference Include="..\WeatherApp.Interfaces\WeatherApp.Services.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

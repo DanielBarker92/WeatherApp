@@ -1,14 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeatherApp.OpenWeatherMapService\WeatherApp.OpenWeatherMapService.csproj" />
+    <ProjectReference Include="..\WeatherApp.Adapters.Interfaces\WeatherApp.Adapters.Interfaces.csproj" />
+    <ProjectReference Include="..\WeatherApp.Adapters\WeatherApp.Adapters.csproj" />
+    <ProjectReference Include="..\WeatherApp.OpenWeatherMapService\WeatherApp.Services.OpenWeatherMapService.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

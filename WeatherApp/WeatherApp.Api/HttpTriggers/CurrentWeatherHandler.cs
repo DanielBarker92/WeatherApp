@@ -5,25 +5,48 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using WeatherApp.Interfaces;
+using WeatherApp.Models;
+using System.IO;
+using WeatherApp.Adapters.Interfaces;
+using WeatherApp.Services.Interfaces;
+using AutoMapper;
 
-namespace WeatherApp.Api2
+namespace WeatherApp.Api
 {
     public class CurrentWeatherHandler
     {
         private readonly IWeatherService _weatherService;
+        private readonly IWeatherServiceAdapter _weatherServiceAdapter;
 
-        public CurrentWeatherHandler(IWeatherService weatherService)
-            => _weatherService = weatherService;
+        public CurrentWeatherHandler(IWeatherService weatherService, IWeatherServiceAdapter weatherServiceAdapter)
+        {
+            _weatherService = weatherService;
+            _weatherServiceAdapter = weatherServiceAdapter;
+        }
 
         [FunctionName("CurrentWeatherHandler")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "weather")] HttpRequest req,
             ILogger log)
         {
-            var location = Convert.ToString(req.Query["location"]);
-            var weatherResponse = await _weatherService.GetWeatherAsync(location);
-            return new OkObjectResult(weatherResponse);
+            req.Query.TryGetValue("location", out var location);
+
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                log.LogWarning($"Location parameter was missing from request");
+                return new BadRequestObjectResult("Mandatory 'location' querystring parameter is missing.");
+            }
+
+            try
+            {
+                var weatherDetails = await _weatherServiceAdapter.GetWeatherByLocationAsync(location);
+                return new OkObjectResult(weatherDetails);
+            }
+            catch(Exception e)
+            {
+                return new BadRequestObjectResult(e.Message);
+
+            }
         }
     }
 }

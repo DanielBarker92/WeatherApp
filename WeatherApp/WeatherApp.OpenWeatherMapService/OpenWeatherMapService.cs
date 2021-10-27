@@ -8,34 +8,33 @@ using WeatherApp.Models;
 using WeatherApp.Services.Interfaces.Models;
 using Flurl.Http;
 using Flurl;
+using WeatherApp.Api.Models;
 
 namespace WeatherApp.Services.OpenWeatherMapService
 {
     public class OpenWeatherMapService : IWeatherService
     {
-        private readonly string _apiKey;
-        private readonly Uri _baseUrl;
-        public OpenWeatherMapService()
-        {
-            _apiKey = Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.ApiKey");
-            _baseUrl = new Uri(Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.BaseUrl"));
-        }
+        private readonly ApiSettings _apiSettings;
+        public OpenWeatherMapService(ApiSettings apiSettings)
+            => _apiSettings = apiSettings;
 
         public async Task<WeatherResponse> GetWeatherByLocationAsync(string location)
         {
-            var url = _baseUrl.AppendPathSegment("weather").SetQueryParams(new { q = location, appid = _apiKey });
+            var url = _apiSettings.BaseUrl.AppendPathSegment("weather")
+                .SetQueryParams(new 
+                { 
+                    q = location, 
+                    appid = _apiSettings.ApiKey
+                });
 
             try
             {
-                var test = await url.GetJsonAsync();
-
                 return await url.GetJsonAsync<WeatherResponse>();
             }
             catch (FlurlHttpException ex)
             {
                 var error = await ex.GetResponseJsonAsync<ErrorResponse>();
-                var res = $"Error returned from {ex.Call.Request.Url}: {error.Message}";
-                throw new HttpRequestException(error.Message);
+                throw new FlurlHttpException(ex.Call, error.Message, ex.InnerException);
             }
         }
     }

@@ -10,6 +10,8 @@ using System.IO;
 using WeatherApp.Adapters.Interfaces;
 using WeatherApp.Services.Interfaces;
 using AutoMapper;
+using Flurl.Http;
+using WeatherApp.Services.Interfaces.Models;
 
 namespace WeatherApp.Api
 {
@@ -42,10 +44,9 @@ namespace WeatherApp.Api
                 var weatherDetails = await _weatherServiceAdapter.GetWeatherByLocationAsync(location);
                 return new OkObjectResult(weatherDetails);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return new BadRequestObjectResult(e.Message);
-
+                return new BadRequestObjectResult(new ErrorDetails() { Message = e.Message });
             }
         }
     }

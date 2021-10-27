@@ -7,6 +7,7 @@ using System.Text;
 using WeatherApp.Adapters;
 using WeatherApp.Adapters.Interfaces;
 using WeatherApp.Api.Core.AutoMapperConfig;
+using WeatherApp.Api.Models;
 using WeatherApp.Services.Interfaces;
 using WeatherApp.Services.OpenWeatherMapService;
 
@@ -18,6 +19,12 @@ namespace WeatherApp.Api
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            var apiSettings = new ApiSettings(
+                apiKey: Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.ApiKey"),
+                baseUrl: new Uri(Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.BaseUrl"))
+            );
+
+            builder.Services.AddSingleton<ApiSettings>(apiSettings);
             builder.Services.AddSingleton<IWeatherService, OpenWeatherMapService>();
             builder.Services.AddSingleton<IWeatherServiceAdapter, WeatherServiceAdapter>();
 

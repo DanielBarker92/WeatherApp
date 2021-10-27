@@ -9,6 +9,8 @@ using Xunit;
 using WeatherApp.Services.OpenWeatherMapService;
 using FluentAssertions;
 using Flurl.Http.Testing;
+using Flurl.Http;
+using WeatherApp.Api.Models;
 
 namespace WeatherApp.Tests
 {
@@ -43,10 +45,8 @@ namespace WeatherApp.Tests
                 name = "CambridgeTest"
             });
 
-            Environment.SetEnvironmentVariable("WeatherApi.OpenWeatherMap.ApiKey", "c55cf32ee34fde0d2f8bd8556b99a694");
-            Environment.SetEnvironmentVariable("WeatherApi.OpenWeatherMap.BaseUrl", "https://www.fakebaseurl.test/thisisapath/");
-
-            var openWeatherMapService = new OpenWeatherMapService();
+            var apiSettings = new ApiSettings("dummyapikey", new Uri("http://www.dummbase.url"));
+            var openWeatherMapService = new OpenWeatherMapService(apiSettings);
 
             //Act
             var response = await openWeatherMapService.GetWeatherByLocationAsync("Cambridge, GB");
@@ -56,7 +56,7 @@ namespace WeatherApp.Tests
         }
 
         [Fact]
-        public async Task GetWeatherByLocationAsync_GivenAnInvalidLocation_ThrowsException()
+        public async Task GetWeatherByLocationAsync_GivenInvalidLocation_ThrowsException()
         {
             //Arrange
             _testHttpClient.RespondWithJson(new
@@ -65,16 +65,14 @@ namespace WeatherApp.Tests
                 message = "city not found"
             }, 404);
 
-            Environment.SetEnvironmentVariable("WeatherApi.OpenWeatherMap.ApiKey", "c55cf32ee34fde0d2f8bd8556b99a694");
-            Environment.SetEnvironmentVariable("WeatherApi.OpenWeatherMap.BaseUrl", "https://www.fakebaseurl.test/thisisapath/");
-
-            var openWeatherMapService = new OpenWeatherMapService();
+            var apiSettings = new ApiSettings("dummyapikey", new Uri("http://www.dummbase.url"));
+            var openWeatherMapService = new OpenWeatherMapService(apiSettings);
 
             //Act
-            var response = await openWeatherMapService.GetWeatherByLocationAsync("ThisIsntAnActualLocation, GB");
+            Func<Task> action = async () => await openWeatherMapService.GetWeatherByLocationAsync("ThisIsntAnActualLocation, GB");
 
             //Assert
-            response.Should().NotBeNull();
+            (await action.Should().ThrowAsync<FlurlHttpException>()).WithMessage("city not found");
 
         }
     }

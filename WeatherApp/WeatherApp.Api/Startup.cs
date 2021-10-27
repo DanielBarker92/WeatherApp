@@ -23,10 +23,7 @@ namespace WeatherApp.Api
 
             builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 
-            builder.Services.AddHttpClient("OpenWeatherMapV2.5", client =>
-            {
-                client.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/");
-            });
+            builder.Services.AddLogging();
         }
     }
 }

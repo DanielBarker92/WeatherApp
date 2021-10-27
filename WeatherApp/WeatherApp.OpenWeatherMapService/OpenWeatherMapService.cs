@@ -6,35 +6,37 @@ using System.Threading.Tasks;
 using WeatherApp.Services.Interfaces;
 using WeatherApp.Models;
 using WeatherApp.Services.Interfaces.Models;
+using Flurl.Http;
+using Flurl;
 
 namespace WeatherApp.Services.OpenWeatherMapService
 {
     public class OpenWeatherMapService : IWeatherService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _apiKey;
-        public OpenWeatherMapService(IHttpClientFactory httpClientFactory)
+        private readonly Uri _baseUrl;
+        public OpenWeatherMapService()
         {
-            _httpClientFactory = httpClientFactory;
             _apiKey = Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.ApiKey");
+            _baseUrl = new Uri(Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.BaseUrl"));
         }
 
         public async Task<WeatherResponse> GetWeatherByLocationAsync(string location)
         {
-            var client = _httpClientFactory.CreateClient("OpenWeatherMapV2.5");
-            var request = new HttpRequestMessage(HttpMethod.Get, $"weather?q={location}&appid={_apiKey}");
+            var url = _baseUrl.AppendPathSegment("weather").SetQueryParams(new { q = location, appid = _apiKey });
 
-            var response = await client.SendAsync(request);
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var weatherDetails = JsonConvert.DeserializeObject<WeatherResponse>(content);
-                return weatherDetails;
-            }
+                var test = await url.GetJsonAsync();
 
-            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-            throw new HttpRequestException(errorResponse.Message);
+                return await url.GetJsonAsync<WeatherResponse>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var error = await ex.GetResponseJsonAsync<ErrorResponse>();
+                var res = $"Error returned from {ex.Call.Request.Url}: {error.Message}";
+                throw new HttpRequestException(error.Message);
+            }
         }
     }
 }

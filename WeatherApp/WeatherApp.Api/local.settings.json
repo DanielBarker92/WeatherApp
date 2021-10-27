@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "WeatherApi.OpenWeatherMap.ApiKey": "c55cf32ee34fde0d2f8bd8556b99a694",
+    "WeatherApi.OpenWeatherMap.BaseUrl": "https://api.openweathermap.org/data/2.5"
+  }
+}

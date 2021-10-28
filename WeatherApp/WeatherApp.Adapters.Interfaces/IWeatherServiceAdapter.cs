@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using WeatherApp.Models;
+using WeatherApp.Api.Models;
 
 namespace WeatherApp.Adapters.Interfaces
 {

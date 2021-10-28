@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WeatherApp.Adapters.Interfaces\WeatherApp.Adapters.Interfaces.csproj" />
     <ProjectReference Include="..\WeatherApp.Adapters\WeatherApp.Adapters.csproj" />
+    <ProjectReference Include="..\WeatherApp.Api.Core\WeatherApp.Api.Core.csproj" />
     <ProjectReference Include="..\WeatherApp.OpenWeatherMapService\WeatherApp.Services.OpenWeatherMapService.csproj" />
   </ItemGroup>
   <ItemGroup>

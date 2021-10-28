@@ -5,7 +5,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using WeatherApp.Models;
+using WeatherApp.Api.Models;
 using System.IO;
 using WeatherApp.Adapters.Interfaces;
 using WeatherApp.Services.Interfaces;

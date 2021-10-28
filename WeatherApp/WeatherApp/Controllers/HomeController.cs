@@ -27,6 +27,14 @@ namespace WeatherApp.Controllers
         public IActionResult Index([FromForm]LocationRequest searchLocation)
         {
             _logger.LogTrace($"Searched location: {searchLocation?.Location}");
+
+            //TODO: complete below (if location searched)
+            //var location = searchLocation.Location.AppendCountryCode();
+
+            //TODO: create and call service (Services folder / WeatherApp.Client.Services) to call API.
+            //TODO: display results below
+            //TODO: handle error response
+
             return View(searchLocation);
         }
     }

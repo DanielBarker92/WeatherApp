@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WeatherApp.Models
+namespace WeatherApp.Api.Models
 {
     /// <summary>
     ///     Error object to be returned to the calling client

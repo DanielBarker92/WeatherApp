@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Adapters.Interfaces;
-using WeatherApp.Models;
+using WeatherApp.Api.Models;
 using WeatherApp.Services.Interfaces;
 using WeatherApp.Services.Interfaces.Models;
 

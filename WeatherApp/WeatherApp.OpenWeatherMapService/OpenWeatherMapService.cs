@@ -1,14 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WeatherApp.Services.Interfaces;
-using WeatherApp.Models;
+using WeatherApp.Api.Models;
 using WeatherApp.Services.Interfaces.Models;
 using Flurl.Http;
 using Flurl;
-using WeatherApp.Api.Models;
 
 namespace WeatherApp.Services.OpenWeatherMapService
 {
@@ -24,7 +19,8 @@ namespace WeatherApp.Services.OpenWeatherMapService
                 .SetQueryParams(new 
                 { 
                     q = location, 
-                    appid = _apiSettings.ApiKey
+                    appid = _apiSettings.ApiKey,
+                    units = "metric"
                 });
 
             try

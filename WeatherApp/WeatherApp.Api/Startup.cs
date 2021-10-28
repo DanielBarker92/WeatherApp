@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace WeatherApp.Api
                 baseUrl: new Uri(Environment.GetEnvironmentVariable("WeatherApi.OpenWeatherMap.BaseUrl"))
             );
 
-            builder.Services.AddSingleton<ApiSettings>(apiSettings);
+            builder.Services.AddSingleton(apiSettings);
             builder.Services.AddSingleton<IWeatherService, OpenWeatherMapService>();
             builder.Services.AddSingleton<IWeatherServiceAdapter, WeatherServiceAdapter>();
 

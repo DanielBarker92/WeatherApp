@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WeatherApp.Models\WeatherApp.Api.Models.csproj" />
+    <ProjectReference Include="..\WeatherApp.Interfaces\WeatherApp.Services.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

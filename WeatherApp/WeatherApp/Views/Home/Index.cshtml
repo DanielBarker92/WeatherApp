@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-    {
-        @Html.LabelFor(l => l.Location, "Enter your location", new { @class = "pr-2" } );
-        @Html.TextBoxFor(t => t.Location);
+    <div class="text-center">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            @Html.LabelFor(l => l.Location, "Enter your location", new { @class = "pr-2" });
+            @Html.TextBoxFor(t => t.Location);
 
-    }
-</div>
+            <input type="submit" value="Search" name="search" class="actionButton" />
+
+        }
+    </div>

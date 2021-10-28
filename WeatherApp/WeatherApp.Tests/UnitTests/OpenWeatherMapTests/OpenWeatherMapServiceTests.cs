@@ -45,7 +45,7 @@ namespace WeatherApp.Tests
                 name = "CambridgeTest"
             });
 
-            var apiSettings = new ApiSettings("dummyapikey", new Uri("http://www.dummbase.url"));
+            var apiSettings = new ApiSettings("dummyapikey", new Uri("http://www.dummybase.url"));
             var openWeatherMapService = new OpenWeatherMapService(apiSettings);
 
             //Act
@@ -65,7 +65,7 @@ namespace WeatherApp.Tests
                 message = "city not found"
             }, 404);
 
-            var apiSettings = new ApiSettings("dummyapikey", new Uri("http://www.dummbase.url"));
+            var apiSettings = new ApiSettings("dummyapikey", new Uri("http://www.dummybase.url"));
             var openWeatherMapService = new OpenWeatherMapService(apiSettings);
 
             //Act

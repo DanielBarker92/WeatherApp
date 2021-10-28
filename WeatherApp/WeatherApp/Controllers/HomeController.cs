@@ -44,7 +44,7 @@ namespace WeatherApp.Controllers
             }
             catch (Exception e)
             {
-                return View("Error", new ErrorDetails(e.Message, location));
+                return View("Error", new ErrorDetails(e.Message, searchLocation.Location));
             }
         }
     }

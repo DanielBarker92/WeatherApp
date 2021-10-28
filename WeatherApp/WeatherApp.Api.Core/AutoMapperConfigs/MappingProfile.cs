@@ -22,9 +22,7 @@ namespace WeatherApp.Api.Core.AutoMapperConfig
                     source.Main.Humidity,
                     source.Sys.Sunset.UnixTimeStampToDateTime(),
                     source.Sys.Sunrise.UnixTimeStampToDateTime(),
-                    source.Main.Temp,
-                    source.Main.Max,
-                    source.Main.Min
+                    new TemperatureDetails(source.Main.Temp, source.Main.Max, source.Main.Min)
                 ));
         }
     }

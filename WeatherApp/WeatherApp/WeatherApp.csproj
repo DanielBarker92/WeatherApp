@@ -12,7 +12,4 @@
   <ItemGroup>
     <ProjectReference Include="..\WeatherApp.Models\WeatherApp.Api.Models.csproj" />
   </ItemGroup>
-
-
-
 </Project>

@@ -25,11 +25,11 @@ namespace WeatherApp.Api.Models
         /// <param name="current"></param>
         /// <param name="max"></param>
         /// <param name="min"></param>
-        public TemperatureDetails(float current, float max, float min)
+        public TemperatureDetails(float current, float maximum, float minimum)
         {
             Current = current;
-            Maximum = max;
-            Minimum = min;
+            Maximum = maximum;
+            Minimum = minimum;
         }
     }
 }

@@ -2,5 +2,59 @@
 
 @using WeatherApp.Api.Models
 
+<h2 class="col-12"> Current weather in @Model.Location</h2>
 
-<p>Weathers looking like @Model.Weather</p>
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+            Weather
+        </div>
+        <div class="card-body">
+            <p>
+                Currently: @Model.Weather
+            </p>
+            <p>
+                @Model.Description
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+            Temperature
+        </div>
+        <div class="card-body">
+            <p>
+                Currently @(Model.Temperature.Current)°C
+            </p>
+            <p>
+                High of @(Model.Temperature.Maximum)°C
+            </p>
+            <p>
+                Low of @(Model.Temperature.Minimum)°C
+            </p>
+            <p>
+                Humidity at @(Model.Humidity)%
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+            Other
+        </div>
+        <div class="card-body">
+            <p>
+                Atmospheric pressure of @Model.Pressure hPa
+            </p>
+            <p>
+                Sunrise at @Model.Sunrise.ToString("t")
+            </p>
+            <p>
+                Sunset at @Model.Sunset.ToString("t")
+            </p>
+        </div>
+    </div>
+</div>

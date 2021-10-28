@@ -17,14 +17,10 @@ namespace WeatherApp.Api
 {
     public class CurrentWeatherHandler
     {
-        private readonly IWeatherService _weatherService;
         private readonly IWeatherServiceAdapter _weatherServiceAdapter;
 
-        public CurrentWeatherHandler(IWeatherService weatherService, IWeatherServiceAdapter weatherServiceAdapter)
-        {
-            _weatherService = weatherService;
-            _weatherServiceAdapter = weatherServiceAdapter;
-        }
+        public CurrentWeatherHandler(IWeatherServiceAdapter weatherServiceAdapter)
+            => _weatherServiceAdapter = weatherServiceAdapter;
 
         [FunctionName("CurrentWeatherHandler")]
         public async Task<IActionResult> Run(
@@ -35,7 +31,6 @@ namespace WeatherApp.Api
 
             if (string.IsNullOrWhiteSpace(location))
             {
-                log.LogWarning($"Location parameter was missing from request");
                 return new BadRequestObjectResult("Mandatory 'location' querystring parameter is missing.");
             }
 

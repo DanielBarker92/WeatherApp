@@ -13,9 +13,8 @@ namespace WeatherApp.Api.Core.Extensions
         /// <returns> DateTime value of given unix timestamp </returns>
         public static DateTime UnixTimeStampToDateTime(this int unixTimeStamp)
         {
-            //TODO: UNIT TEST
             // Unix timestamp is seconds past epoch
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dateTime;
         }

@@ -63,9 +63,7 @@ namespace WeatherApp.Api.Models
             int humidity, 
             DateTime sunset, 
             DateTime sunrise,
-            float currentTemperature,
-            float maximumTemperature,
-            float minimumTemperature)
+            TemperatureDetails temperature)
         {
             Location = location;
             Weather = weather;
@@ -74,7 +72,7 @@ namespace WeatherApp.Api.Models
             Humidity = humidity;
             Sunset = sunset;
             Sunrise = sunrise;
-            Temperature = new TemperatureDetails(currentTemperature, maximumTemperature, minimumTemperature);
+            Temperature = temperature;
         }
     }
 }

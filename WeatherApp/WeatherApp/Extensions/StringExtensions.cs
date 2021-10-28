@@ -10,6 +10,9 @@ namespace WeatherApp.Extensions
     {
         public static string AppendGbCountryCodeIfNotExists(this string location)
         {
+            if (string.IsNullOrWhiteSpace(location))
+                throw new ArgumentNullException(location);
+
             var pattern = ", ?[a-zA-Z]{2}$";
             var regex = new Regex(pattern);
 

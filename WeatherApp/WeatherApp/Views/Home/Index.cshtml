@@ -16,6 +16,8 @@
 
     @if (Model.WeatherDetails != null)
     {
-        @Html.Partial("WeatherWidget", Model.WeatherDetails);
+        <div class="row pt-3">
+            @await Html.PartialAsync("WeatherWidget", Model.WeatherDetails);
+        </div>
     }
 </div>

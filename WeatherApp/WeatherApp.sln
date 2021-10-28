@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Adapters", "Weat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Adapters.Interfaces", "WeatherApp.Adapters.Interfaces\WeatherApp.Adapters.Interfaces.csproj", "{CEA1F407-7D3B-459B-A9F6-17F59D1ADCB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Tests", "WeatherApp.Tests\WeatherApp.Tests.csproj", "{54F99520-4837-4783-A34A-CBABCDE157BB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp", "WeatherApp\WeatherApp.csproj", "{3F18B3A2-66BF-443A-8B64-74B4AB485FEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp.Api.Core", "WeatherApp.Api.Core\WeatherApp.Api.Core.csproj", "{00A4D27F-3975-4B5F-80C2-EB56E9C71D1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Api.Core", "WeatherApp.Api.Core\WeatherApp.Api.Core.csproj", "{00A4D27F-3975-4B5F-80C2-EB56E9C71D1D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApp.Api.Tests", "WeatherApp.Api.Tests\WeatherApp.Api.Tests.csproj", "{544AE56C-BBCC-466D-A3AA-0A62EB1FA117}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +51,6 @@ Global
 		{CEA1F407-7D3B-459B-A9F6-17F59D1ADCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA1F407-7D3B-459B-A9F6-17F59D1ADCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA1F407-7D3B-459B-A9F6-17F59D1ADCB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54F99520-4837-4783-A34A-CBABCDE157BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54F99520-4837-4783-A34A-CBABCDE157BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54F99520-4837-4783-A34A-CBABCDE157BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54F99520-4837-4783-A34A-CBABCDE157BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F18B3A2-66BF-443A-8B64-74B4AB485FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F18B3A2-66BF-443A-8B64-74B4AB485FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F18B3A2-66BF-443A-8B64-74B4AB485FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +59,10 @@ Global
 		{00A4D27F-3975-4B5F-80C2-EB56E9C71D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A4D27F-3975-4B5F-80C2-EB56E9C71D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A4D27F-3975-4B5F-80C2-EB56E9C71D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{544AE56C-BBCC-466D-A3AA-0A62EB1FA117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{544AE56C-BBCC-466D-A3AA-0A62EB1FA117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{544AE56C-BBCC-466D-A3AA-0A62EB1FA117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{544AE56C-BBCC-466D-A3AA-0A62EB1FA117}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

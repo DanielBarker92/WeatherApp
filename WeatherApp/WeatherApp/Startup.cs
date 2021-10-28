@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WeatherApp.Services.WeatherService;
 
 namespace WeatherApp
 {
@@ -22,6 +23,15 @@ namespace WeatherApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddLogging();
+
+            services.AddHttpClient("BglWeatherService", client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:7071/api/");
+            });
+
+            services.AddSingleton<IWeatherService, WeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

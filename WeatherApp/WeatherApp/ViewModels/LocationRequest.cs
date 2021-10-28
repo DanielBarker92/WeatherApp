@@ -12,7 +12,13 @@ namespace WeatherApp.Models
     {
         public string Location { get; set; }
 
-        public WeatherDetails WeatherDetails { get; set; }
+        public WeatherDetails WeatherDetails { get; }
+
+        public LocationRequest(string location, WeatherDetails weatherDetails)
+        {
+            Location = location;
+            WeatherDetails = weatherDetails;
+        }
 
         public LocationRequest()
         {

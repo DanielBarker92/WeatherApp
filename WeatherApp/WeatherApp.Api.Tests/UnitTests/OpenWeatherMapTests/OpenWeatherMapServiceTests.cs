@@ -12,7 +12,7 @@ using Flurl.Http.Testing;
 using Flurl.Http;
 using WeatherApp.Api.Models;
 
-namespace WeatherApp.Tests
+namespace WeatherApp.Api.Tests
 {
     public class OpenWeatherMapServiceTests
     {

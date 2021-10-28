@@ -1,0 +1,15 @@
+﻿@model WeatherApp.Models.ErrorDetails
+
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>There was an error with your request</h2>
+    <p>Searched Location: @Model.SearchTerm</p>
+    <p>Error Details: @Model.Message</p>
+    <p class="text-center">
+        <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Search again</a>
+    </p>
+</div>

@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WeatherApp.Models;
+using WeatherApp.Extensions;
+using WeatherApp.Services.WeatherService;
 
 namespace WeatherApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWeatherService _weatherService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IWeatherService weatherService, ILogger<HomeController> logger)
         {
+            _weatherService = weatherService;
             _logger = logger;
         }
 
@@ -24,18 +28,24 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index([FromForm]LocationRequest searchLocation)
+        public async Task<IActionResult> Index([FromForm]LocationRequest searchLocation)
         {
             _logger.LogTrace($"Searched location: {searchLocation?.Location}");
 
-            //TODO: complete below (if location searched)
-            //var location = searchLocation.Location.AppendCountryCode();
+            if (string.IsNullOrWhiteSpace(searchLocation.Location))
+                return View("Error", new ErrorDetails("No search term entered", ""));
+                
+            var location = searchLocation.Location.AppendGbCountryCodeIfNotExists();
 
-            //TODO: create and call service (Services folder / WeatherApp.Client.Services) to call API.
-            //TODO: display results below
-            //TODO: handle error response
-
-            return View(searchLocation);
+            try
+            {
+                var weatherDetails = await _weatherService.GetWeatherByLocationAsync(location);
+                return View(new LocationRequest(location, weatherDetails));
+            }
+            catch (Exception e)
+            {
+                return View("Error", new ErrorDetails(e.Message, location));
+            }
         }
     }
 }
